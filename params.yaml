@@ -1,12 +1,10 @@
 TrainingArguments:
-  per_device_train_batch_size: 2  # Increased for BART-base
-  per_device_eval_batch_size: 2
-  gradient_accumulation_steps: 8  # Reduced since batch size is larger
-  num_train_epochs: 3
-  warmup_steps: 500
+  num_train_epochs: 1
+  warmup_steps: 200        # lower warmup to save training time
+  per_device_train_batch_size: 1
   weight_decay: 0.01
-  learning_rate: 5e-5  # Optimal for BART
-  logging_steps: 10
-  evaluation_strategy: "steps"
-  eval_steps: 500
-  save_steps: 1000
+  logging_steps: 50        # less frequent logs (lighter on I/O)
+  eval_strategy: steps
+  eval_steps: 1000         # evaluate less often to reduce GPU load
+  save_steps: 1000000
+  gradient_accumulation_steps: 8   # reduce accumulation to save VRAM
