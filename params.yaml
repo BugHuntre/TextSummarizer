@@ -1,1 +1,12 @@
-key: value 
+TrainingArguments:
+  per_device_train_batch_size: 2  # Increased for BART-base
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8  # Reduced since batch size is larger
+  num_train_epochs: 3
+  warmup_steps: 500
+  weight_decay: 0.01
+  learning_rate: 5e-5  # Optimal for BART
+  logging_steps: 10
+  evaluation_strategy: "steps"
+  eval_steps: 500
+  save_steps: 1000
